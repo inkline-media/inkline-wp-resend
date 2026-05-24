@@ -1,0 +1,12 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Composer dev dependencies are not shipped
+# but vendor/ and vendor-prefixed/ ARE committed (required at runtime)

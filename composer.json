@@ -1,0 +1,59 @@
+{
+    "require": {
+        "resend/resend-php": "^1.1.0",
+        "monolog/monolog": "^3.10.0",
+        "psr/log": "^3.0.2"
+    },
+    "config": {
+        "platform": {
+            "php": "8.1"
+        },
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^3.3",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+        "phpcompatibility/phpcompatibility-wp": ">=2.1.8",
+        "szepeviktor/phpstan-wordpress": "^2.0",
+        "php-stubs/wp-cli-stubs": "^2.10"
+    },
+    "scripts": {
+        "phpcs": "./vendor/bin/phpcs",
+        "phpcbf": "./vendor/bin/phpcbf",
+        "phpstan": "./vendor/bin/phpstan analyze",
+        "test": [
+            "@phpcs",
+            "@phpstan"
+        ],
+        "zip": "bash bin/build-zip.sh",
+        "prefix-namespaces": [
+            "sh -c 'test -f ./bin/strauss.phar || curl -o bin/strauss.phar -L -C - https://github.com/BrianHenryIE/strauss/releases/download/0.27.0/strauss.phar'",
+            "@php bin/strauss.phar",
+            "@composer dump-autoload"
+        ],
+        "post-install-cmd": [
+            "@prefix-namespaces"
+        ],
+        "post-update-cmd": [
+            "@prefix-namespaces"
+        ],
+        "post-autoload-dump": [
+            "sh -c 'test -f ./bin/strauss.phar || curl -o bin/strauss.phar -L -C - https://github.com/BrianHenryIE/strauss/releases/download/0.27.0/strauss.phar'",
+            "@php bin/strauss.phar include-autoloader"
+        ]
+    },
+    "extra": {
+        "strauss": {
+            "delete_vendor_packages": true,
+            "namespace_prefix": "ResendWP\\",
+            "classmap_prefix": "ResendWP_",
+            "packages": [
+                "resend/resend-php",
+                "monolog/monolog",
+                "psr/log"
+            ]
+        }
+    }
+}

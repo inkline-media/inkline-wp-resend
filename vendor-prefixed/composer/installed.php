@@ -1,0 +1,150 @@
+<?php return array (
+  'root' => 
+  array (
+    'name' => '__root__',
+    'pretty_version' => 'dev-production',
+    'version' => 'dev-production',
+    'reference' => '2b0c8da04dffeea94c11cc56820be1b831dbdbd1',
+    'type' => 'library',
+    'install_path' => __DIR__ . '/../',
+    'aliases' => 
+    array (
+    ),
+    'dev' => false,
+  ),
+  'versions' => 
+  array (
+    'guzzlehttp/guzzle' => 
+    array (
+      'pretty_version' => '7.10.0',
+      'version' => '7.10.0.0',
+      'reference' => 'b51ac707cfa420b7bfd4e4d5e510ba8008e822b4',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../guzzlehttp/guzzle',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+    'guzzlehttp/promises' => 
+    array (
+      'pretty_version' => '2.3.0',
+      'version' => '2.3.0.0',
+      'reference' => '481557b130ef3790cf82b713667b43030dc9c957',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../guzzlehttp/promises',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+    'guzzlehttp/psr7' => 
+    array (
+      'pretty_version' => '2.8.0',
+      'version' => '2.8.0.0',
+      'reference' => '21dc724a0583619cd1652f673303492272778051',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../guzzlehttp/psr7',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+    'monolog/monolog' => 
+    array (
+      'pretty_version' => '3.10.0',
+      'version' => '3.10.0.0',
+      'reference' => 'b321dd6749f0bf7189444158a3ce785cc16d69b0',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../monolog/monolog',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+    'psr/http-client' => 
+    array (
+      'pretty_version' => '1.0.3',
+      'version' => '1.0.3.0',
+      'reference' => 'bb5906edc1c324c9a05aa0873d40117941e5fa90',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../psr/http-client',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+    'psr/http-factory' => 
+    array (
+      'pretty_version' => '1.1.0',
+      'version' => '1.1.0.0',
+      'reference' => '2b4765fddfe3b508ac62f829e852b1501d3f6e8a',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../psr/http-factory',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+    'psr/http-message' => 
+    array (
+      'pretty_version' => '2.0',
+      'version' => '2.0.0.0',
+      'reference' => '402d35bcb92c70c026d1a6a9883f06b2ead23d71',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../psr/http-message',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+    'psr/log' => 
+    array (
+      'pretty_version' => '3.0.2',
+      'version' => '3.0.2.0',
+      'reference' => 'f16e1d5863e37f8d8c2a01719f5b34baa2b714d3',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../psr/log',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+    'ralouphie/getallheaders' => 
+    array (
+      'pretty_version' => '3.0.3',
+      'version' => '3.0.3.0',
+      'reference' => '120b605dfeb996808c31b6477290a714d356e822',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../ralouphie/getallheaders',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+    'resend/resend-php' => 
+    array (
+      'pretty_version' => 'v1.1.0',
+      'version' => '1.1.0.0',
+      'reference' => 'c1ce4ee5dc8ca90a5e6a2dc6d772a06abbe7c9d3',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../resend/resend-php',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+    'symfony/deprecation-contracts' => 
+    array (
+      'pretty_version' => 'v3.6.0',
+      'version' => '3.6.0.0',
+      'reference' => '63afe740e99a13ba87ec199bb07bbdee937a5b62',
+      'type' => 'library',
+      'install_path' => __DIR__ . '/../symfony/deprecation-contracts',
+      'aliases' => 
+      array (
+      ),
+      'dev_requirement' => false,
+    ),
+  ),
+);
