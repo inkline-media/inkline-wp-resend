@@ -2,7 +2,7 @@
 Contributors:      inkline-media, cloudcatch, dkjensen
 Tags:              resend, smtp, email, api
 Tested up to:      6.9
-Stable tag:        1.4.1
+Stable tag:        1.4.2
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP:      8.1
@@ -27,6 +27,10 @@ Based on "Send Emails with Resend" v1.3.0 by CloudCatch LLC, licensed GPLv2+.
 Resend.com API integration. Neither this plugin nor its authors are affiliated with Resend.com.
 
 == Changelog ==
+
+= 1.4.2 =
+* Feature: REST API endpoints for remote configuration (POST/GET /wp-json/inkline-resend/v1/settings)
+* Useful for managed hosting (e.g. Kinsta) where custom WP-CLI commands aren't available via API
 
 = 1.4.1 =
 * Feature: `wp resend setup` CLI command for headless configuration (--api-key, --from-email, --from-name)

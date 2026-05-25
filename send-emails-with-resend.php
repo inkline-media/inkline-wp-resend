@@ -4,7 +4,7 @@
  * Description:       Fork of "Send Emails with Resend" — respects wp_mail() sender when the domain matches the verified Resend domain; falls back to configured defaults otherwise.
  * Requires at least: 6.0.0
  * Requires PHP:      8.1
- * Version:           1.4.1
+ * Version:           1.4.2
  * Author:            Inkline Media (forked from CloudCatch LLC)
  * Author URI:        https://inkline.ca
  * License:           GPL v2 or later
@@ -35,6 +35,54 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 
 	\WP_CLI::add_command( 'resend', __NAMESPACE__ . '\Resend_CLI' );
 }
+
+// REST API endpoint for remote configuration.
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'inkline-resend/v1', '/settings', array(
+		'methods'             => 'POST',
+		'callback'            => function ( \WP_REST_Request $request ) {
+			$params   = $request->get_json_params();
+			$settings = (array) get_option( 'resend_settings', array() );
+
+			if ( isset( $params['api_key'] ) ) {
+				$settings['resend_api_key'] = sanitize_text_field( $params['api_key'] );
+			}
+			if ( isset( $params['from_email'] ) ) {
+				$settings['resend_from_email'] = sanitize_email( $params['from_email'] );
+			}
+			if ( isset( $params['from_name'] ) ) {
+				$settings['resend_from_name'] = sanitize_text_field( $params['from_name'] );
+			}
+
+			update_option( 'resend_settings', $settings );
+
+			$display = $settings;
+			if ( isset( $display['resend_api_key'] ) ) {
+				$display['resend_api_key'] = substr( $display['resend_api_key'], 0, 10 ) . '...';
+			}
+
+			return new \WP_REST_Response( array( 'success' => true, 'settings' => $display ), 200 );
+		},
+		'permission_callback' => function () {
+			return current_user_can( 'manage_options' );
+		},
+	) );
+
+	register_rest_route( 'inkline-resend/v1', '/settings', array(
+		'methods'             => 'GET',
+		'callback'            => function () {
+			$settings = (array) get_option( 'resend_settings', array() );
+			$display  = $settings;
+			if ( isset( $display['resend_api_key'] ) ) {
+				$display['resend_api_key'] = substr( $display['resend_api_key'], 0, 10 ) . '...';
+			}
+			return new \WP_REST_Response( array( 'settings' => $display ), 200 );
+		},
+		'permission_callback' => function () {
+			return current_user_can( 'manage_options' );
+		},
+	) );
+} );
 
 /**
  * Handle PHPMailer.
