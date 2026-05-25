@@ -2,7 +2,7 @@
 Contributors:      inkline-media, cloudcatch, dkjensen
 Tags:              resend, smtp, email, api
 Tested up to:      6.9
-Stable tag:        1.4.0
+Stable tag:        1.4.1
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP:      8.1
@@ -27,6 +27,11 @@ Based on "Send Emails with Resend" v1.3.0 by CloudCatch LLC, licensed GPLv2+.
 Resend.com API integration. Neither this plugin nor its authors are affiliated with Resend.com.
 
 == Changelog ==
+
+= 1.4.1 =
+* Feature: `wp resend setup` CLI command for headless configuration (--api-key, --from-email, --from-name)
+* Feature: `wp resend status` CLI command to display current settings
+* Improved: `wp resend send_test` now accepts --to and --from flags
 
 = 1.4.0 =
 * Fork: From Name and From Email are now fallbacks, not overrides
