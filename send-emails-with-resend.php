@@ -4,12 +4,13 @@
  * Description:       Fork of "Send Emails with Resend" — respects wp_mail() sender when the domain matches the verified Resend domain; falls back to configured defaults otherwise.
  * Requires at least: 6.0.0
  * Requires PHP:      8.1
- * Version:           1.4.2
+ * Version:           1.4.3
  * Author:            Inkline Media (forked from CloudCatch LLC)
  * Author URI:        https://inkline.ca
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       send-emails-with-resend
+ * Update URI:        https://github.com/inkline-media/inkline-wp-resend
  * GitHub Plugin URI: inkline-media/inkline-wp-resend
  * Primary Branch:    main
  *
