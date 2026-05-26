@@ -4,7 +4,7 @@
  * Description:       Fork of "Send Emails with Resend" — respects wp_mail() sender when the domain matches the verified Resend domain; falls back to configured defaults otherwise.
  * Requires at least: 6.0.0
  * Requires PHP:      8.1
- * Version:           1.4.3
+ * Version:           1.4.4
  * Author:            Inkline Media (forked from CloudCatch LLC)
  * Author URI:        https://inkline.ca
  * License:           GPL v2 or later
@@ -37,6 +37,33 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	\WP_CLI::add_command( 'resend', __NAMESPACE__ . '\Resend_CLI' );
 }
 
+// Migrate legacy prefixed keys (resend_api_key → api_key, etc.) from v1.4.2–1.4.3 bug.
+add_action( 'init', function () {
+	$settings = (array) get_option( 'resend_settings', array() );
+	$migrated = false;
+
+	$key_map = array(
+		'resend_api_key'    => 'api_key',
+		'resend_from_email' => 'from_email',
+		'resend_from_name'  => 'from_name',
+	);
+
+	foreach ( $key_map as $old_key => $new_key ) {
+		if ( isset( $settings[ $old_key ] ) && ! empty( $settings[ $old_key ] ) ) {
+			// Only migrate if the correct key is empty or missing.
+			if ( empty( $settings[ $new_key ] ) ) {
+				$settings[ $new_key ] = $settings[ $old_key ];
+			}
+			unset( $settings[ $old_key ] );
+			$migrated = true;
+		}
+	}
+
+	if ( $migrated ) {
+		update_option( 'resend_settings', $settings );
+	}
+}, 1 );
+
 // REST API endpoint for remote configuration.
 add_action( 'rest_api_init', function () {
 	register_rest_route( 'inkline-resend/v1', '/settings', array(
@@ -46,20 +73,20 @@ add_action( 'rest_api_init', function () {
 			$settings = (array) get_option( 'resend_settings', array() );
 
 			if ( isset( $params['api_key'] ) ) {
-				$settings['resend_api_key'] = sanitize_text_field( $params['api_key'] );
+				$settings['api_key'] = sanitize_text_field( $params['api_key'] );
 			}
 			if ( isset( $params['from_email'] ) ) {
-				$settings['resend_from_email'] = sanitize_email( $params['from_email'] );
+				$settings['from_email'] = sanitize_email( $params['from_email'] );
 			}
 			if ( isset( $params['from_name'] ) ) {
-				$settings['resend_from_name'] = sanitize_text_field( $params['from_name'] );
+				$settings['from_name'] = sanitize_text_field( $params['from_name'] );
 			}
 
 			update_option( 'resend_settings', $settings );
 
 			$display = $settings;
-			if ( isset( $display['resend_api_key'] ) ) {
-				$display['resend_api_key'] = substr( $display['resend_api_key'], 0, 10 ) . '...';
+			if ( isset( $display['api_key'] ) ) {
+				$display['api_key'] = substr( $display['api_key'], 0, 10 ) . '...';
 			}
 
 			return new \WP_REST_Response( array( 'success' => true, 'settings' => $display ), 200 );
@@ -74,8 +101,8 @@ add_action( 'rest_api_init', function () {
 		'callback'            => function () {
 			$settings = (array) get_option( 'resend_settings', array() );
 			$display  = $settings;
-			if ( isset( $display['resend_api_key'] ) ) {
-				$display['resend_api_key'] = substr( $display['resend_api_key'], 0, 10 ) . '...';
+			if ( isset( $display['api_key'] ) ) {
+				$display['api_key'] = substr( $display['api_key'], 0, 10 ) . '...';
 			}
 			return new \WP_REST_Response( array( 'settings' => $display ), 200 );
 		},
